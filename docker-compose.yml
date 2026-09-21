@@ -1,6 +1,6 @@
 services:
   freellmapi:
-    image: ghcr.io/tashfeenahmed/freellmapi:latest
+    image: ghcr.io/pryxintel/free-llm-api:latest
     build:
       context: .
       dockerfile: Dockerfile

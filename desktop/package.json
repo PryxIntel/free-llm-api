@@ -1,13 +1,13 @@
 {
-  "name": "freellmapi-desktop",
-  "version": "0.11.1",
-  "description": "FreeLLMAPI menu-bar app — local OpenAI-compatible LLM router",
+  "name": "free-llm-api-desktop",
+  "version": "1.0.0",
+  "description": "Free LLM API Gateway menu-bar app by PryxIntel",
   "author": {
-    "name": "tashfeenahmed",
-    "email": "tashfene@gmail.com",
-    "url": "https://github.com/tashfeenahmed"
+    "name": "PryxIntel",
+    "email": "priyanshu0.dotin@gmail.com",
+    "url": "https://github.com/PryxIntel"
   },
-  "homepage": "https://freellmapi.co/",
+  "homepage": "https://github.com/PryxIntel/free-llm-api",
   "private": true,
   "type": "module",
   "main": "build/main.mjs",
