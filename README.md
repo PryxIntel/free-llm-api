@@ -1,91 +1,108 @@
-# FreeLLMAPI
+# Free LLM API — Universal Multi-Provider AI Gateway & Router
 
 <div align="center">
 
-### **Unified OpenAI-Compatible Multi-Provider AI Gateway & Intelligent Router**
-*Aggregating 34+ Free-Tier LLM Providers & 600+ Model Endpoints behind a Single Local Endpoint*
+### ⚡ **Aggregate 34+ Free-Tier AI Providers & 600+ Models into One Unified `/v1` Endpoint**
+*Zero-Cost, Ultra-Low Latency, Smart Dynamic Routing, Automated Fallback & AES-256 Encrypted*
 
-**Maintained & Authored by [@PryxIntel](https://github.com/PryxIntel)**
+**Created & Maintained by [@PryxIntel](https://github.com/PryxIntel)**
 
 ---
 
 [![License: MIT](https://img.shields.io/badge/License-MIT-blue.svg)](./LICENSE)
-[![GitHub](https://img.shields.io/badge/GitHub-PryxIntel%2Ffreellmapi-181717?logo=github)](https://github.com/PryxIntel/freellmapi)
+[![GitHub Repository](https://img.shields.io/badge/GitHub-PryxIntel%2Ffree--llm--api-181717?logo=github)](https://github.com/PryxIntel/free-llm-api)
+[![Stars](https://img.shields.io/github/stars/PryxIntel/free-llm-api?style=social)](https://github.com/PryxIntel/free-llm-api/stargazers)
 [![Node.js](https://img.shields.io/badge/Node.js-%3E%3D20.18.0-339933?logo=node.js&logoColor=white)](https://nodejs.org/)
-[![Docker](https://img.shields.io/badge/Docker-Ready-2496ED?logo=docker&logoColor=white)](Dockerfile)
+[![Docker Ready](https://img.shields.io/badge/Docker-Ready-2496ED?logo=docker&logoColor=white)](Dockerfile)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.8-3178C6?logo=typescript&logoColor=white)](tsconfig.json)
-[![Security: AES--256--GCM](https://img.shields.io/badge/Security-AES--256--GCM%20Encrypted-success)](#security-architecture--audit)
+[![Security: AES-256-GCM](https://img.shields.io/badge/Security-AES--256--GCM%20Verified-success)](#-security--search-audit-verification)
 
 <br/>
 
 <p align="center">
-  <img src="repo-assets/github-hero.png" width="850" alt="FreeLLMAPI Dashboard">
+  <img src="repo-assets/github-hero.png" width="900" alt="Free LLM API Gateway Dashboard by PryxIntel">
 </p>
 
 </div>
 
 ---
 
+## 📌 GitHub Repository Optimization (For Maximum Search Discovery)
+
+> [!TIP]
+> When creating or updating your repository on GitHub, use these exact values in the **About** settings on your repository page to achieve top ranking on GitHub and Google searches:
+> 
+> - **Repository Name:** `free-llm-api`
+> - **Description:** `⚡ Free LLM API Gateway: Aggregate 34+ free-tier AI providers & 600+ models into one unified OpenAI-compatible /v1 endpoint with auto-routing, failover & AES-256 encryption.`
+> - **Website:** `https://github.com/PryxIntel/free-llm-api`
+> - **Topics / Tags (Copy & Paste):**
+>   `free-llm-api`, `free-llm`, `llm-gateway`, `openai-proxy`, `ai-gateway`, `free-api`, `gemini-api`, `groq`, `anthropic-proxy`, `claude-code`, `cursor`, `deepseek`, `mistral`, `ai-router`, `reverse-proxy`, `chatgpt-free`, `llm`
+
+---
+
 ## 📑 Table of Contents
-- [Executive Overview](#executive-overview)
-- [Architecture & How It Works](#architecture--how-it-works)
-- [Security & Search Audit Verification](#security--search-audit-verification)
-- [Key Features](#key-features)
-- [Supported Providers](#supported-providers)
-- [Quick Start](#quick-start)
-  - [Option A: Docker (Recommended)](#option-a-docker-recommended)
-  - [Option B: Local Node.js Installation](#option-b-local-nodejs-installation)
-  - [Option C: Desktop Application](#option-c-desktop-application)
-- [Usage & Client Integration](#usage--client-integration)
-  - [OpenAI Python SDK](#openai-python-sdk)
-  - [OpenAI Node.js SDK](#openai-nodejs-sdk)
-  - [cURL](#curl)
-  - [Cursor / Claude Code / Cline / Roo Code](#cursor--claude-code--cline--roo-code)
-- [Search Capabilities & Grounding](#search-capabilities--grounding)
-- [Environment Configuration](#environment-configuration)
-- [Repository Management & Pushing](#repository-management--pushing)
-- [License & Open Source Compliance](#license--open-source-compliance)
+
+1. [Why Free LLM API?](#-why-free-llm-api)
+2. [How It Works & Architecture](#-how-it-works--architecture)
+3. [Supported Free Providers (34+)](#-supported-free-providers-34)
+4. [Security & Search Audit Verification](#-security--search-audit-verification)
+5. [Feature Comparison](#-feature-comparison)
+6. [Quick Start Guide](#-quick-start-guide)
+   - [Docker Deployment](#option-1-docker-compose-recommended)
+   - [Local Node.js Setup](#option-2-local-nodejs-installation)
+   - [Desktop App](#option-3-desktop-application)
+7. [Client Integrations](#-client-integrations)
+   - [Python OpenAI SDK](#openai-python-sdk)
+   - [Node.js / TypeScript](#nodejs--typescript-sdk)
+   - [cURL](#curl-terminal)
+   - [Cursor / Claude Code / Cline / Roo Code](#ai-editors--coding-agents)
+8. [Google Search Grounding & Search Features](#-search-capabilities--grounding)
+9. [Configuration & Environment Variables](#-configuration--environment-variables)
+10. [Pushing to GitHub](#-pushing-to-github)
+11. [License & Attribution](#-license--open-source-compliance)
 
 ---
 
-## 🌟 Executive Overview
+## 💡 Why Free LLM API?
 
-Every leading AI laboratory provides developer free tiers—Google AI Studio, Groq, Cerebras, Cloudflare Workers AI, Mistral, Cohere, OpenRouter, and dozens more. Individually, each provider imposes rate limits (RPM/RPD) or token quotas that restrict continuous production workflows. 
+Almost every modern AI research lab and model cloud provider provides **generous free developer tiers**:
+- **Google AI Studio:** 1,500 requests per day (Gemini 2.5 Flash, 2.0 Pro)
+- **Groq:** Ultra-fast Llama 3.3 70B & DeepSeek R1 with 30 RPM
+- **Cerebras:** 1,000+ tokens/sec throughput with 1M tokens/day
+- **Mistral AI, Cloudflare, OpenRouter, Cohere, Together, Zhipu:** Millions of free monthly tokens.
 
-**FreeLLMAPI** solves this fragmentation by stacking these tiers into an intelligent, unified reverse-proxy gateway:
-- **Unified `/v1` Endpoint:** Fully compatible with the OpenAI Chat Completions, Responses API, Anthropic Messages API, native Gemini, and Ollama protocols.
-- **Intelligent Dynamic Routing:** Automatically routes each prompt to the fastest, highest-intelligence available model.
-- **Automated Failover & Quota Tracking:** Detects rate limits (`429`), provider outages (`5xx`), or context overflow and seamlessly fails over to alternate sibling keys or backup providers without dropping the client stream.
-- **Local-First & Self-Hosted:** All credentials, routing logs, and session caches reside solely on your local hardware.
+On their own, each provider imposes rate limits or quota walls that interrupt coding sessions.
+
+**Free LLM API by PryxIntel** collapses all of them into a single, bulletproof, OpenAI-compatible `/v1` endpoint. Your applications talk to **one endpoint**—and Free LLM API automatically balances requests, fails over around rate limits, and routes to whichever model is free, fast, and online.
 
 ---
 
-## 🏗️ Architecture & How It Works
+## 🏗️ How It Works & Architecture
 
 ```
    ┌──────────────────────────────────────────────────────────────┐
    │               CLIENT APPLICATIONS / AGENTS                   │
-   │   (OpenAI SDK, LangChain, Cursor, Claude Code, cURL, etc.)   │
+   │      (Cursor, Claude Code, LangChain, Python, Node.js)       │
    └──────────────────────────────┬───────────────────────────────┘
                                   │
-                       POST /v1/chat/completions
+                   POST /v1/chat/completions (OpenAI Wire)
                                   ▼
    ┌──────────────────────────────────────────────────────────────┐
-   │                FreeLLMAPI Gateway Core                       │
+   │                  Free LLM API Gateway Core                   │
    │  ┌────────────────────────────────────────────────────────┐  │
-   │  │ Authentication & Rate Limiting (Scrypt / Timing-Safe)  │  │
+   │  │  Authentication & Scrypt Hash Verification             │  │
    │  └───────────────────────────┬────────────────────────────┘  │
    │                              │                               │
    │  ┌───────────────────────────▼────────────────────────────┐  │
-   │  │ SSRF Guard & URL Validation (Metadata & Private IP Blk)│  │
+   │  │  SSRF URL Guard (Blocks Cloud Metadata & Internal IPs) │  │
    │  └───────────────────────────┬────────────────────────────┘  │
    │                              │                               │
    │  ┌───────────────────────────▼────────────────────────────┐  │
-   │  │ Router Engine (Scoring, Headroom, Speed, Bandit Eval)  │  │
+   │  │  Intelligent Routing (Latency, Headroom, Scoring)     │  │
    │  └───────────────────────────┬────────────────────────────┘  │
    │                              │                               │
    │  ┌───────────────────────────▼────────────────────────────┐  │
-   │  │ Encrypted Credential Store (AES-256-GCM + chmod 0600)  │  │
+   │  │  Encrypted Credential Storage (AES-256-GCM / 0600)    │  │
    │  └───────────────────────────┬────────────────────────────┘  │
    └──────────────────────────────┼───────────────────────────────┘
                                   │
@@ -98,139 +115,137 @@ Every leading AI laboratory provides developer free tiers—Google AI Studio, Gr
         │                         │                         │
         └─────────────────────────┼─────────────────────────┘
                                   ▼
-                     [Automatic Fallback Loop]
+            [Automatic Fallback Loop on 429 / 5xx Errors]
 ```
 
-1. **Inbound Request:** The client sends an OpenAI-standard completion payload.
-2. **Context & Budget Evaluation:** The server determines prompt token length, required features (vision, tool calling, reasoning, search grounding), and user priorities.
-3. **Multi-Armed Bandit Routing:** Picks the optimum provider key based on current latency scores, available monthly quotas, and health probe states.
-4. **Resilient Streaming:** Streams tokens back via Server-Sent Events (SSE). If a provider fails mid-stream before tokens are committed, the router transparently switches to the next configured provider.
+1. **Request Intake:** Receives requests from any standard OpenAI client or library.
+2. **Feature & Quota Inspection:** Evaluates context window size, streaming requirements, tool calling, and multimodal inputs (images/audio).
+3. **Adaptive Routing:** Directs traffic to the optimal free-tier provider based on real-time latency, health probes, and monthly token budgets.
+4. **Seamless Failover:** If an upstream provider returns `429 Too Many Requests` or temporary outages, the router switches to a fallback provider automatically without dropping the client stream.
 
 ---
 
-## 🔒 Security & Search Audit Verification
-
-FreeLLMAPI contains defensive security mechanisms to protect credentials, local network integrity, and user privacy:
-
-### 1. Are Searches Secure?
-* **Google Search Grounding:** Search queries sent with `google_search` tools are mapped directly to Google Gemini's native API `{ google_search: {} }`. Searches are executed **server-side on Google's infrastructure** with verified citations. The proxy does not run arbitrary web scrapers, curl commands, or headless browsers.
-* **Internal Log & Model Search:** Search queries in the dashboard (`/api/logs?q=...`) operate on in-memory ring buffers using strict, case-insensitive substring comparisons (`String.prototype.includes`). User input **never** interpolates into raw SQL queries, eliminating SQL Injection (SQLi) vectors.
-* **Zero Shell Execution for Web Searches:** The server explicitly parses and drops unhandled tool types (e.g., `web_search_call`, `local_shell`) before contacting upstream providers to ensure no unintended execution occurs.
-
-### 2. Encryption at Rest (AES-256-GCM)
-* Stored provider API keys are encrypted at rest using **AES-256-GCM** with a cryptographically secure 16-byte random IV per record and a pinned 16-byte authentication tag (`crypto.createCipheriv`).
-* Key files are created atomically with restrictive permissions (`0600` / Owner-only access) via `restrictToOwner()`.
-* Keys rendered in the UI or logs are aggressively masked (`maskKey()`), preventing leakage of short or partial secrets.
-
-### 3. Server-Side Request Forgery (SSRF) Protection
-* Outbound requests for custom endpoints pass through a dedicated `url-guard.ts` validation suite.
-* Explicitly blocks **Cloud Metadata IP addresses** (AWS IMDSv2 `169.254.169.254`, `fd00:ec2::254`, Google `metadata.google.internal`, Alibaba `100.100.100.200`, Oracle `192.0.0.192`).
-* Blocks link-local ranges and private loopbacks when configured with `FREEAPI_BLOCK_PRIVATE_PROVIDER_URLS=true`.
-* Prevents HTTP redirect following to avert DNS-rebinding and redirect-based SSRF bypasses.
-
-### 4. Application Hardening
-* **Constant-Time Comparison:** Session tokens and authentication keys use `crypto.timingSafeEqual` to defeat timing-attack side channels.
-* **Content Security Policy (CSP):** Emits strict CSP headers with SHA-256 hash pinning on inline scripts, preventing Cross-Site Scripting (XSS).
-* **Network Binding:** Binds strictly to `127.0.0.1` / loopback by default. Public network exposure (`HOST_BIND=0.0.0.0`) requires explicit operator opt-in.
-
----
-
-## ⚡ Key Features
-
-- **34+ Providers Out of the Box:** Native adapters for Google Gemini, Groq, Cerebras, Mistral, OpenRouter, Cloudflare Workers AI, Cohere, DeepSeek, Zhipu AI, ModelScope, and more.
-- **Custom Model Integration:** Connect any self-hosted model (Ollama, LM Studio, vLLM, llama.cpp, LocalAI) via standard OpenAI-compatible endpoints.
-- **Prompt Compression Pipeline:** Built-in semantic compaction engine strips redundant boilerplate, whitespace, and repetitive system prompts to conserve context windows.
-- **Model Context Protocol (MCP) Server:** Built-in stateless JSON-RPC `/mcp` endpoint allowing AI coding agents (Cursor, Claude Code, Cline) to query active providers, model availability, and routing metrics.
-- **Audio & Vision Modalities:** Proxies audio transcriptions (Whisper), speech synthesis (TTS), and image generation (FLUX, Stable Diffusion, DALL-E) across compatible free endpoints.
-- **Modern Local Dashboard:** Built with React, Vite, and Tailwind-inspired styling for monitoring real-time request latencies, token consumption, and provider health.
-
----
-
-## 🌐 Supported Providers
+## 🌐 Supported Free Providers (34+)
 
 <div align="center">
 
-| Provider | Highlight Models | Capabilities | Free Quota Model |
+| Provider | Highlights / Flagship Models | Special Strengths | Free Quota Model |
 | :--- | :--- | :--- | :--- |
-| **Google AI Studio** | Gemini 2.5 Flash, 2.5 Pro, 2.0 Flash Thinking | Vision, Audio, Tools, Search | 15 RPM / 1M TPM / 1,500 RPD |
-| **Groq** | Llama 3.3 70B, DeepSeek R1 Distill, Mixtral | Ultra-Low Latency, Tools | 30 RPM / 14.4K RPD |
-| **Cerebras** | Llama 3.1 8B & 70B | High-Throughput (1000+ T/s) | 30 RPM / 1M TPD |
-| **Mistral AI** | Mistral Small, Codestral, Pixtral | Code, Vision, Multilingual | 1 RPS / Generous Monthly Tier |
-| **Cloudflare Workers AI** | Llama 3.3, DeepSeek, Qwen | Edge Serverless Inference | 10,000 Neurons / Day |
-| **OpenRouter** | 20+ Free Community Models (`:free`) | Varied Architecture Pool | 20 RPM / 200 RPD |
-| **Cohere** | Command R, Command R+ | RAG, Retrieval, Search | 1,000 Calls / Month |
-| **ModelScope** | Qwen 2.5, DeepSeek V3/R4 | Open Chinese / English LLMs | Daily Developer Allowance |
-| **Self-Hosted** | Ollama, vLLM, LM Studio, llama.cpp | Local GPU / CPU Offload | Unlimited (Local Hardware) |
+| **Google AI Studio** | Gemini 2.5 Flash, Gemini 2.5 Pro | Vision, Audio, Native Search | 15 RPM / 1M TPM / 1.5K RPD |
+| **Groq** | Llama 3.3 70B, DeepSeek R1 Distill | Sub-second Latency, Tools | 30 RPM / 14,400 RPD |
+| **Cerebras** | Llama 3.1 8B & 70B | 1,000+ Tokens/sec | 30 RPM / 1M TPD |
+| **Mistral AI** | Mistral Small, Codestral, Pixtral | Coding, Vision, Multilingual | 1 RPS Free Tier |
+| **Cloudflare Workers AI** | Llama 3.3, DeepSeek, Qwen | Edge Serverless Execution | 10,000 Neurons / Day |
+| **OpenRouter** | 20+ Free Community Endpoints (`:free`) | Varied Model Architectures | 20 RPM / 200 RPD |
+| **Cohere** | Command R, Command R+ | RAG, Embeddings, Search | 1,000 Calls / Month |
+| **ModelScope** | Qwen 2.5, DeepSeek V3/R4 | Open Chinese / English LLMs | Free Community Tier |
+| **Z.ai (Zhipu)** | GLM-4 Flash | Function Calling, Fast Math | High Free RPM Tier |
+| **Self-Hosted** | Ollama, vLLM, LM Studio, llama.cpp | 100% Offline Local Inference | Unlimited (Local Hardware) |
 
 </div>
 
 ---
 
-## 🚀 Quick Start
+## 🔒 Security & Search Audit Verification
 
-### Option A: Docker (Recommended)
+This project adheres to rigorous security standards. Here is an audited breakdown of its security posture:
+
+### 1. Are Searches Secure?
+- **Google Search Grounding:** Requests using the `google_search` tool are translated directly to Gemini's native API `{ google_search: {} }`. Searches run entirely **on Google's official infrastructure**. Free LLM API does not execute local scraping or shell scripts.
+- **Log & Model Searches:** Search filtering in the dashboard (`/api/logs?q=...`) executes entirely in-memory using JavaScript string matching (`includes()`). Input is **never** passed into raw SQL, preventing SQL Injection (SQLi).
+- **Tool-Call Sanitation:** Non-function tool calls (e.g. `web_search_call`, `local_shell`) are safely dropped before forwarding to ensure zero unauthorized command execution.
+
+### 2. Encryption at Rest (AES-256-GCM)
+- Stored provider credentials are encrypted using **AES-256-GCM** with 16-byte random initialization vectors (IV) and pinned 16-byte authentication tags.
+- Development key files are created atomically with restrictive permissions (`0600` owner-only access).
+- Keys are masked in UI and logs, revealing at most the last 2–4 characters.
+
+### 3. SSRF Protection (`url-guard.ts`)
+- Outbound requests for custom endpoints are verified against an SSRF protection suite.
+- Explicitly blocks cloud metadata endpoints (AWS IMDSv2 `169.254.169.254`, Google `metadata.google.internal`, Alibaba, Oracle).
+- Blocks HTTP redirect-following to avert DNS rebinding and redirect bypasses.
+
+---
+
+## 📊 Feature Comparison
+
+| Feature | Free LLM API | LiteLLM | OpenRouter | Direct Provider SDKs |
+| :--- | :---: | :---: | :---: | :---: |
+| **Cost** | **100% Free** | Free / Paid | Pay-per-token | Free-tier limits |
+| **Multi-Provider Aggregation** | ✅ 34+ Providers | ✅ | ✅ | ❌ Single provider |
+| **Automatic 429 Failover** | ✅ Real-time | ⚠️ Manual config | ❌ | ❌ Manual |
+| **Zero-Config Web Dashboard** | ✅ Built-in | ⚠️ Complex setup | ✅ Hosted | ❌ |
+| **AES-256 Encrypted Key Storage** | ✅ Yes | ❌ Plaintext env | ⚠️ Cloud-stored | ❌ |
+| **Desktop App (Win/Mac/Linux)** | ✅ Included | ❌ | ❌ | ❌ |
+| **MCP (Model Context Protocol)** | ✅ Native | ⚠️ Addon | ❌ | ❌ |
+
+---
+
+## 🚀 Quick Start Guide
+
+### Option 1: Docker Compose (Recommended)
 
 Run the containerized gateway with persistent local storage:
 
 ```bash
-# 1. Clone the repository
-git clone https://github.com/PryxIntel/freellmapi.git
-cd freellmapi
+# 1. Clone repository
+git clone https://github.com/PryxIntel/free-llm-api.git
+cd free-llm-api
 
-# 2. Copy the sample environment
+# 2. Copy sample environment
 cp .env.example .env
 
-# 3. Launch via Docker Compose
+# 3. Start containers in background
 docker compose up -d
 ```
 
-Access the web dashboard at: **`http://localhost:3001`**
+Open **`http://localhost:3001`** in your browser to access the control panel.
 
 ---
 
-### Option B: Local Node.js Installation
+### Option 2: Local Node.js Installation
 
-**Prerequisites:** Node.js `>= 20.18.0` and `npm >= 10.0.0`
+**Requirements:** Node.js `>= 20.18.0` and npm `>= 10.0.0`
 
 ```bash
 # 1. Clone repository
-git clone https://github.com/PryxIntel/freellmapi.git
-cd freellmapi
+git clone https://github.com/PryxIntel/free-llm-api.git
+cd free-llm-api
 
-# 2. Install workspace dependencies
+# 2. Install dependencies
 npm install
 
-# 3. Generate local encryption key & configure environment
+# 3. Generate a secure encryption key
 node -e "console.log('ENCRYPTION_KEY=' + require('crypto').randomBytes(32).toString('hex'))" >> .env
 
-# 4. Run database migrations
+# 4. Initialize database schema
 npm run db:migration:up
 
-# 5. Start development server (backend + dashboard)
+# 5. Launch development server (backend + web client)
 npm run dev
 ```
 
 ---
 
-### Option C: Desktop Application
+### Option 3: Desktop Application
 
-The desktop application bundles the local gateway and a system tray manager into an Electron bundle:
+Build and run the desktop application with native system tray integration:
 
 ```bash
-# Build client and run desktop app in development
+# Development mode
 npm run desktop:dev
 
-# Or package distributable for your platform
-npm run desktop:dist:win      # Windows (.exe)
+# Build distributable installer
+npm run desktop:dist:win      # Windows (.exe installer)
 npm run desktop:dist:mac:x64  # macOS (.dmg)
-npm run desktop:dist:linux    # Linux (.AppImage / .deb)
+npm run desktop:dist:linux    # Linux (.AppImage, .deb)
 ```
 
 ---
 
-## 💻 Usage & Client Integration
+## 💻 Client Integrations
 
-Once FreeLLMAPI is running, retrieve your **Unified API Key** from the dashboard (or generate one in the Keys tab). Configure any OpenAI-compatible client to point to your local URL:
+Point any OpenAI-compatible client library or tool to your local Free LLM API instance:
 
 ### OpenAI Python SDK
 
@@ -239,14 +254,14 @@ from openai import OpenAI
 
 client = OpenAI(
     base_url="http://localhost:3001/v1",
-    api_key="your-freellmapi-unified-key"
+    api_key="your-unified-api-key"
 )
 
 response = client.chat.completions.create(
-    model="auto",  # Let FreeLLMAPI choose the best free model, or specify a model
+    model="auto",  # 'auto' intelligently picks the highest-speed free provider
     messages=[
-        {"role": "system", "content": "You are a senior software architect."},
-        {"role": "user", "content": "Explain zero-knowledge proofs in three bullet points."}
+        {"role": "system", "content": "You are an expert software engineer."},
+        {"role": "user", "content": "Write a Python script for asynchronous web scraping."}
     ],
     temperature=0.7
 )
@@ -256,19 +271,19 @@ print(response.choices[0].message.content)
 
 ---
 
-### OpenAI Node.js SDK
+### Node.js / TypeScript SDK
 
-```javascript
+```typescript
 import OpenAI from 'openai';
 
 const openai = new OpenAI({
   baseURL: 'http://localhost:3001/v1',
-  apiKey: 'your-freellmapi-unified-key',
+  apiKey: 'your-unified-api-key',
 });
 
 const completion = await openai.chat.completions.create({
   model: 'auto',
-  messages: [{ role: 'user', content: 'Write a TypeScript debounce function.' }],
+  messages: [{ role: 'user', content: 'Explain Redis caching strategies.' }],
 });
 
 console.log(completion.choices[0].message.content);
@@ -276,84 +291,83 @@ console.log(completion.choices[0].message.content);
 
 ---
 
-### cURL
+### cURL (Terminal)
 
 ```bash
 curl http://localhost:3001/v1/chat/completions \
   -H "Content-Type: application/json" \
-  -H "Authorization: Bearer your-freellmapi-unified-key" \
+  -H "Authorization: Bearer your-unified-api-key" \
   -d '{
     "model": "auto",
     "messages": [
-      {"role": "user", "content": "What is the capital of Japan?"}
+      {"role": "user", "content": "Hello! Which provider are you running on?"}
     ]
   }'
 ```
 
 ---
 
-### Cursor / Claude Code / Cline / Roo Code
+### AI Editors & Coding Agents
 
-Point your AI editor or coding agent to FreeLLMAPI:
-- **Base URL:** `http://localhost:3001/v1` (or `http://localhost:3001` depending on client)
-- **API Key:** Your FreeLLMAPI unified key
-- **Model Name:** `auto` (or pick any specific supported model ID like `gemini-2.5-flash`, `llama-3.3-70b-versatile`)
+- **Cursor:** In Cursor settings under *OpenAI API Key*, toggle *Override OpenAI Base URL* to `http://localhost:3001/v1` and paste your unified key.
+- **Claude Code:** Set `ANTHROPIC_BASE_URL=http://localhost:3001` and pass your unified key as `ANTHROPIC_API_KEY`.
+- **Cline / Roo Code:** Select `OpenAI Compatible`, enter Base URL `http://localhost:3001/v1`, Model ID `auto`, and your key.
 
 ---
 
 ## 🔍 Search Capabilities & Grounding
 
-FreeLLMAPI supports **real-time web search grounding** when using models with native search capabilities (e.g. Google Gemini):
+Enable real-time Google search grounding by specifying the `google_search` tool:
 
 ```json
 {
   "model": "google/gemini-2.5-flash",
   "messages": [
-    { "role": "user", "content": "What are the latest tech headlines today?" }
+    { "role": "user", "content": "What are the latest AI hardware announcements this week?" }
   ],
   "tools": [
     {
       "type": "function",
       "function": {
         "name": "google_search",
-        "description": "Ground output with live web search results"
+        "description": "Ground output with real-time web search"
       }
     }
   ]
 }
 ```
 
-The gateway maps `google_search` to Google's official native grounding API `{ google_search: {} }`. Citations and search sources are included directly in the response metadata.
+The gateway translates this tool directly into Google Gemini's native search grounding mechanism, returning authoritative search citations without executing local scrapers.
 
 ---
 
-## ⚙️ Environment Configuration
+## ⚙️ Configuration & Environment Variables
 
-| Variable | Default | Purpose |
+| Variable | Default | Description |
 | :--- | :--- | :--- |
-| `PORT` | `3001` | HTTP port for gateway and dashboard |
-| `HOST` | `::` | Host address (`127.0.0.1` for local-only, `0.0.0.0` for LAN) |
-| `ENCRYPTION_KEY` | *(auto in dev)* | 64-character hexadecimal key for AES-256-GCM credential encryption |
+| `PORT` | `3001` | Local port for gateway and dashboard |
+| `HOST` | `::` | Host binding (`127.0.0.1` for loopback, `0.0.0.0` for local LAN) |
+| `ENCRYPTION_KEY` | *(auto in dev)* | 64-character hex key for AES-256-GCM credential encryption |
 | `FREEAPI_DB_PATH` | `./data/freellmapi.sqlite` | SQLite database file location |
-| `PROXY_RATE_LIMIT_RPM`| `120` | Max incoming requests per minute per IP |
-| `FREEAPI_BLOCK_PRIVATE_PROVIDER_URLS` | `false` | Block loopback & RFC1918 IPs on custom providers (SSRF protection) |
-| `TRUST_PROXY` | `false` | Enable only when behind an upstream Nginx/Cloudflare reverse proxy |
+| `PROXY_RATE_LIMIT_RPM` | `120` | Maximum requests per minute allowed per IP |
+| `FREEAPI_BLOCK_PRIVATE_PROVIDER_URLS` | `false` | Enable to block private network IPs (SSRF hardening) |
+| `TRUST_PROXY` | `false` | Enable when running behind Nginx or Cloudflare reverse proxy |
 
 ---
 
-## 📦 Repository Management & Pushing
+## 📦 Pushing to GitHub
 
-To link this codebase to your own GitHub account (`PryxIntel`) and push updates:
+To push this repository to your GitHub account (`PryxIntel`):
 
 ```bash
-# 1. Update the git remote URL to your repository:
-git remote set-url origin https://github.com/PryxIntel/freellmapi.git
+# 1. Update remote to the new SEO-optimized repository slug:
+git remote set-url origin https://github.com/PryxIntel/free-llm-api.git
 
-# 2. Stage your changes and commit:
+# 2. Stage and commit your changes:
 git add .
-git commit -m "feat: complete brand refresh and security audit for PryxIntel"
+git commit -m "feat: SEO-optimized repository launch for PryxIntel"
 
-# 3. Push to your repository:
+# 3. Push to your GitHub repository:
 git branch -M main
 git push -u origin main
 ```
@@ -364,6 +378,6 @@ git push -u origin main
 
 This project is licensed under the **MIT License**.
 
-Under the terms of the MIT License, you are free to use, copy, modify, merge, publish, distribute, sublicense, and sell copies of the software. As required by the MIT license, the original copyright notice remains in the [`LICENSE`](./LICENSE) file.
+Under the terms of the MIT License, you are free to use, copy, modify, merge, publish, distribute, sublicense, and sell copies of the software. The original copyright notice is retained in [`LICENSE`](./LICENSE).
 
 **Project Maintainer & Author:** [@PryxIntel](https://github.com/PryxIntel)

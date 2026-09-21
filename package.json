@@ -1,5 +1,27 @@
 {
-  "name": "@freellmapi/monorepo",
+  "name": "@pryxintel/free-llm-api",
+  "version": "1.0.0",
+  "description": "Free LLM API Gateway — Universal OpenAI-compatible proxy aggregating 34+ free-tier AI providers and 600+ model endpoints with automatic routing, failover, and AES-256 encryption.",
+  "author": "PryxIntel <priyanshu0.dotin@gmail.com>",
+  "homepage": "https://github.com/PryxIntel/free-llm-api#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/PryxIntel/free-llm-api.git"
+  },
+  "keywords": [
+    "free-llm-api",
+    "free-llm",
+    "openai-proxy",
+    "ai-gateway",
+    "llm-router",
+    "gemini",
+    "groq",
+    "mistral",
+    "cerebras",
+    "claude-code",
+    "cursor",
+    "free-ai-api"
+  ],
   "private": true,
   "workspaces": [
     "shared",
