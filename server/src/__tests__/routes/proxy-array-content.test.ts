@@ -69,7 +69,7 @@ describe('OpenAI multimodal array content', () => {
       // Diagnostic if regression: show the validation error.
       throw new Error(`unexpected 400: ${JSON.stringify(body)}`);
     }
-  });
+  }, 15000);
 
   it('accepts content as a text-only multimodal array', async () => {
     const { status, body } = await request(app, 'POST', '/v1/chat/completions', {

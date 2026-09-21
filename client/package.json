@@ -7,7 +7,7 @@
     "dev": "vite",
     "build": "tsc -b && vite build",
     "lint": "eslint .",
-    "test": "vitest run && npm run check:i18n",
+    "test": "node -r ../scripts/polyfill.cjs ../node_modules/vitest/vitest.mjs run && npm run check:i18n",
     "check:i18n": "node scripts/check-i18n.mjs",
     "preview": "vite preview"
   },

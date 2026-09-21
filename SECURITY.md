@@ -19,11 +19,11 @@ re-pull `:latest`).
 ## Reporting a vulnerability
 
 **Preferred:** GitHub private vulnerability reporting — go to the
-[Security tab](https://github.com/PryxIntel/freellmapi/security) and click
+[Security tab](https://github.com/PryxIntel/free-llm-api/security) and click
 **Report a vulnerability**. That opens a private thread with the maintainer and
 keeps the details out of public issues.
 
-**Alternate:** email **support@freellmapi.co** with `[freellmapi security]` in the
+**Alternate:** email **priyanshu0.dotin@gmail.com** with `[free-llm-api security]` in the
 subject.
 
 Please do not open a public issue, PR, or discussion for a security bug until a

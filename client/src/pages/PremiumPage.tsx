@@ -1,13 +1,19 @@
-import { useState } from 'react'
 import { useMutation, useQueryClient } from '@tanstack/react-query'
-import { ExternalLink, RefreshCw, Sparkles } from 'lucide-react'
+import {
+  ExternalLink,
+  RefreshCw,
+  Sparkles,
+  Zap,
+  Globe2,
+  ShieldCheck,
+  BarChart3,
+  Crown,
+  Radio,
+} from 'lucide-react'
 import { apiFetch } from '@/lib/api'
 import { PageHeader } from '@/components/page-header'
 import { Button } from '@/components/ui/button'
-import { Input } from '@/components/ui/input'
-import { Label } from '@/components/ui/label'
 import { Badge } from '@/components/ui/badge'
-import { FieldError } from '@/components/ui/field-error'
 import { CardSkeleton } from '@/components/ui/skeleton'
 import { usePremium } from '@/hooks/use-premium'
 import { useI18n } from '@/i18n'
@@ -17,51 +23,19 @@ function fmtWhen(ms: number | null): string | null {
   return new Date(ms).toLocaleString()
 }
 
-function fmtDate(iso: string | null): string {
-  if (!iso) return ''
-  return new Date(iso).toLocaleDateString(undefined, { year: 'numeric', month: 'long', day: 'numeric' })
-}
-
 export default function PremiumPage() {
   const { t } = useI18n()
   const queryClient = useQueryClient()
-  const [keyInput, setKeyInput] = useState('')
-  const [activateAttempted, setActivateAttempted] = useState(false)
-
-  const { data, isLoading, licensed } = usePremium()
+  const { data, isLoading } = usePremium()
 
   const invalidate = () => {
     queryClient.invalidateQueries({ queryKey: ['premium'] })
-    // A sync may have changed the model list and quirks.
     queryClient.invalidateQueries({ queryKey: ['models'] })
   }
-
-  const activate = useMutation({
-    meta: { silenceToast: true },
-    mutationFn: (key: string) =>
-      apiFetch('/api/premium/key', { method: 'POST', body: JSON.stringify({ key }) }),
-    onSuccess: () => {
-      setKeyInput('')
-      invalidate()
-    },
-  })
-
-  const removeKey = useMutation({
-    mutationFn: () => apiFetch('/api/premium/key', { method: 'DELETE' }),
-    onSuccess: invalidate,
-  })
 
   const syncNow = useMutation({
     mutationFn: () => apiFetch('/api/premium/sync', { method: 'POST' }),
     onSuccess: invalidate,
-  })
-
-  const openPortal = useMutation({
-    meta: { silenceToast: true },
-    mutationFn: () => apiFetch<{ url: string }>('/api/premium/portal', { method: 'POST' }),
-    onSuccess: ({ url }) => {
-      window.open(url, '_blank', 'noopener')
-    },
   })
 
   if (isLoading || !data) {
@@ -76,8 +50,36 @@ export default function PremiumPage() {
     )
   }
 
-  const { hasKey, maskedKey, license, catalog, siteUrl } = data
+  const { catalog } = data
   const live = catalog.appliedTier === 'live'
+
+  const features = [
+    {
+      icon: Zap,
+      title: t('premium.feature1Title'),
+      desc: t('premium.feature1Desc'),
+      color: 'text-amber-500 bg-amber-500/10 border-amber-500/20',
+    },
+    {
+      icon: Globe2,
+      title: t('premium.feature2Title'),
+      desc: t('premium.feature2Desc'),
+      color: 'text-blue-500 bg-blue-500/10 border-blue-500/20',
+    },
+    {
+      icon: ShieldCheck,
+      title: t('premium.feature3Title'),
+      desc: t('premium.feature3Desc'),
+      color: 'text-emerald-500 bg-emerald-500/10 border-emerald-500/20',
+    },
+    {
+      icon: BarChart3,
+      title: t('premium.feature4Title'),
+      desc: t('premium.feature4Desc'),
+      color: 'text-purple-500 bg-purple-500/10 border-purple-500/20',
+    },
+  ]
+
   return (
     <div>
       <PageHeader
@@ -92,19 +94,23 @@ export default function PremiumPage() {
       />
 
       <div className="space-y-8">
-        {/* Catalog feed state */}
+        {/* Catalog feed status */}
         <section>
           <h2 className="text-sm font-medium mb-3">{t('premium.catalogFeed')}</h2>
           <div className="rounded-3xl border bg-card p-5">
             <div className="flex flex-wrap items-center gap-x-6 gap-y-3">
               <div className="flex items-center gap-2">
-                <span className={`inline-block size-2 rounded-full ${live ? 'bg-emerald-500' : 'bg-muted-foreground/40'}`} />
-                <span className="text-sm font-medium">{live ? t('premium.liveFeed') : t('premium.monthlySnapshot')}</span>
+                <span className={`inline-block size-2 rounded-full ${live ? 'bg-emerald-500' : 'bg-emerald-500/70'}`} />
+                <span className="text-sm font-medium">
+                  {live ? t('premium.liveFeed') : t('premium.monthlySnapshot')}
+                </span>
                 <Badge variant="outline" className="font-mono text-[11px]">
                   {catalog.appliedVersion ?? t('premium.bundled')}
                 </Badge>
               </div>
-              <span className="text-xs text-muted-foreground">{t('premium.lastChecked', { when: fmtWhen(catalog.lastSyncMs) ?? t('common.never') })}</span>
+              <span className="text-xs text-muted-foreground">
+                {t('premium.lastChecked', { when: fmtWhen(catalog.lastSyncMs) ?? t('common.never') })}
+              </span>
             </div>
             <p className="text-xs text-muted-foreground mt-3">
               {live
@@ -112,136 +118,87 @@ export default function PremiumPage() {
                 : t('premium.snapshotDescription')}
             </p>
             {catalog.lastError && (
-              <p className="text-destructive text-xs mt-2">{t('premium.lastSyncProblem', { error: catalog.lastError })}</p>
+              <p className="text-destructive text-xs mt-2">
+                {t('premium.lastSyncProblem', { error: catalog.lastError })}
+              </p>
             )}
           </div>
         </section>
 
-        {/* License */}
+        {/* Premium Coming Soon Hero Banner */}
         <section>
-          <h2 className="text-sm font-medium mb-3">{t('premium.license')}</h2>
-          {hasKey ? (
-            <div className="rounded-3xl border bg-card p-5 space-y-4">
-              <div className="flex flex-wrap items-center gap-3">
-                <span className="font-mono text-sm">{maskedKey}</span>
-                {licensed ? (
-                  <Badge className="bg-emerald-500/15 text-emerald-600 dark:text-emerald-400 border-transparent">
-                    {license?.plan === 'annual'
-                      ? t('premium.planAnnual')
-                      : license?.plan === 'lifetime'
-                        ? t('premium.planLifetime')
-                        : t('premium.planGeneric')}
-                  </Badge>
-                ) : (
-                  <Badge variant="outline" className="text-destructive border-destructive/40">
-                    {license?.reason === 'expired' ? t('premium.expired') : t('premium.inactive')}
-                  </Badge>
-                )}
-              </div>
+          <div className="relative overflow-hidden rounded-3xl border border-border/80 bg-gradient-to-br from-card via-card to-muted/30 p-6 md:p-8">
+            <div className="absolute top-0 right-0 -mt-8 -mr-8 size-56 rounded-full bg-gradient-to-br from-primary/10 via-primary/5 to-transparent blur-2xl pointer-events-none" />
 
-              <p className="text-xs text-muted-foreground">
-                {licensed && license?.plan === 'lifetime' && t('premium.lifetimeNote')}
-                {licensed && license?.plan === 'annual' && !license.cancelAtPeriodEnd && license.expiresAt &&
-                  t('premium.renewsOn', { date: fmtDate(license.expiresAt) })}
-                {licensed && license?.plan === 'annual' && license.cancelAtPeriodEnd && license.expiresAt &&
-                  t('premium.willNotRenew', { date: fmtDate(license.expiresAt) })}
-                {!licensed &&
-                  t('premium.keyInactive')}
-              </p>
+            <div className="relative z-10 space-y-6">
+              <div className="flex flex-wrap items-center justify-between gap-4">
+                <div className="flex items-center gap-3">
+                  <div className="flex size-10 items-center justify-center rounded-2xl bg-primary/10 text-primary border border-primary/20 shadow-sm">
+                    <Crown className="size-5" />
+                  </div>
+                  <div>
+                    <div className="flex items-center gap-2.5">
+                      <h2 className="text-base md:text-lg font-semibold tracking-tight">
+                        {t('premium.comingSoonTitle')}
+                      </h2>
+                      <Badge variant="secondary" className="bg-primary/15 text-primary border-primary/20 text-[11px] font-medium">
+                        <Sparkles className="size-3 mr-1" />
+                        {t('premium.badgeComingSoon')}
+                      </Badge>
+                    </div>
+                    <p className="text-xs md:text-sm text-muted-foreground mt-0.5">
+                      {t('premium.comingSoonSubtitle')}
+                    </p>
+                  </div>
+                </div>
 
-              <div className="flex flex-wrap items-center gap-2">
-                <Button variant="outline" size="sm" onClick={() => openPortal.mutate()} disabled={openPortal.isPending}>
-                  <ExternalLink />
-                  {openPortal.isPending ? t('premium.openingPortal') : t('premium.manageSubscription')}
-                </Button>
-                <Button
-                  variant="ghost"
-                  size="sm"
-                  onClick={() => removeKey.mutate()}
-                  disabled={removeKey.isPending}
-                  className="text-muted-foreground"
+                <a
+                  href="https://github.com/PryxIntel/free-llm-api"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="shrink-0"
                 >
-                  {t('premium.removeKey')}
-                </Button>
-              </div>
-              <p className="text-[11px] text-muted-foreground">
-                {t('premium.manageHint')}
-              </p>
-              {openPortal.isError && (
-                <p className="text-destructive text-xs">{(openPortal.error as Error).message}</p>
-              )}
-            </div>
-          ) : (
-            <div className="rounded-3xl border bg-card p-5 space-y-4">
-              <form
-                className="flex flex-wrap items-end gap-3"
-                onSubmit={(e) => {
-                  e.preventDefault()
-                  if (!keyInput.trim()) {
-                    setActivateAttempted(true)
-                    return
-                  }
-                  setActivateAttempted(false)
-                  activate.mutate(keyInput.trim())
-                }}
-              >
-                <div className="space-y-1.5 flex-1 min-w-[260px]">
-                  <Label className="text-xs">{t('premium.licenseKey')}</Label>
-                  <Input
-                    value={keyInput}
-                    onChange={(e) => setKeyInput(e.target.value)}
-                    placeholder="fla_XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX"
-                    className="font-mono text-xs"
-                    autoComplete="off"
-                    aria-invalid={activateAttempted && !keyInput.trim()}
-                  />
-                  {activateAttempted && !keyInput.trim() && <FieldError error={t('validation.required')} />}
-                </div>
-                <Button type="submit" size="sm" disabled={activate.isPending}>
-                  {activate.isPending ? t('premium.activating') : t('premium.activate')}
-                </Button>
-              </form>
-              {activate.isError && (
-                <p className="text-destructive text-xs">{(activate.error as Error).message}</p>
-              )}
-              <p className="text-xs text-muted-foreground">
-                {t('premium.keyHint')}{' '}
-                <a className="underline hover:text-foreground" href={`${siteUrl}/manage.html`} target="_blank" rel="noopener noreferrer">
-                  {t('premium.recoverKey')}
+                  <Button variant="outline" size="sm" className="gap-1.5 shadow-sm">
+                    <Radio className="size-3.5 text-emerald-500 animate-pulse" />
+                    <span>{t('premium.stayTuned')}</span>
+                    <ExternalLink className="size-3.5 opacity-70" />
+                  </Button>
                 </a>
-                .
-              </p>
-            </div>
-          )}
-        </section>
-
-        {/* Upsell, only when not licensed */}
-        {!licensed && (
-          <section>
-            <div className="rounded-3xl border bg-card p-5 flex flex-wrap items-center justify-between gap-4">
-              <div className="flex items-start gap-3">
-                <Sparkles className="size-4 mt-0.5 text-muted-foreground" />
-                <div>
-                  <p className="text-sm font-medium">{t('premium.upsellTitle')}</p>
-                  <p className="text-xs text-muted-foreground mt-0.5">
-                    {t('premium.upsellDescription')}
-                  </p>
-                </div>
               </div>
-              <a
-                href={`${siteUrl}/#pricing`}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="shrink-0"
-              >
-                <Button size="sm">
-                  {t('premium.goPremium')}
-                  <ExternalLink />
-                </Button>
-              </a>
+
+              {/* Feature Grid */}
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 pt-2">
+                {features.map((item, idx) => (
+                  <div
+                    key={idx}
+                    className="group rounded-2xl border border-border/60 bg-background/50 hover:bg-background/80 transition-colors p-4 space-y-2"
+                  >
+                    <div className="flex items-center gap-2.5">
+                      <div className={`flex size-8 items-center justify-center rounded-xl border ${item.color}`}>
+                        <item.icon className="size-4" />
+                      </div>
+                      <h3 className="text-xs md:text-sm font-semibold text-foreground">
+                        {item.title}
+                      </h3>
+                    </div>
+                    <p className="text-xs text-muted-foreground leading-relaxed pl-10.5">
+                      {item.desc}
+                    </p>
+                  </div>
+                ))}
+              </div>
+
+              <div className="rounded-2xl bg-muted/40 border border-border/40 p-3.5 text-center sm:text-left flex flex-col sm:flex-row items-center justify-between gap-3">
+                <p className="text-xs text-muted-foreground">
+                  <span className="font-medium text-foreground">Open Source Guarantee:</span> Core local routing, unlimited multi-model load balancing, and offline support remain completely free forever.
+                </p>
+                <Badge variant="outline" className="text-[10px] font-mono shrink-0">
+                  PryxIntel v1.0.0
+                </Badge>
+              </div>
             </div>
-          </section>
-        )}
+          </div>
+        </section>
       </div>
     </div>
   )

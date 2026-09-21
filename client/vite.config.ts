@@ -26,5 +26,8 @@ export default defineConfig(({ mode }) => {
         '/v1': `http://127.0.0.1:${serverPort}`,
       },
     },
+    test: {
+      setupFiles: [path.resolve(__dirname, '../scripts/polyfill.cjs')],
+    },
   }
 })
