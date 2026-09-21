@@ -883,7 +883,9 @@
     "artifactHtml": "HTML પેજ",
     "artifactSvg": "SVG છબી",
     "artifactLines": "લાઇન",
-    "artifactResize": "પૂર્વાવલોકનનું કદ બદલો"
+    "artifactResize": "પૂર્વાવલોકનનું કદ બદલો",
+    "webSearchToggle": "Web Search (live internet grounding)",
+    "sourcesTitle": "Sources"
   },
   "playgroundSessions": {
     "heading": "વાતચીત",

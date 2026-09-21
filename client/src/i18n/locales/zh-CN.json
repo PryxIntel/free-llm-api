@@ -883,7 +883,9 @@
     "artifactHtml": "HTML 页面",
     "artifactSvg": "SVG 图像",
     "artifactLines": "行",
-    "artifactResize": "调整预览大小"
+    "artifactResize": "调整预览大小",
+    "webSearchToggle": "Web Search (live internet grounding)",
+    "sourcesTitle": "Sources"
   },
   "playgroundSessions": {
     "heading": "对话",

@@ -883,7 +883,9 @@
     "artifactHtml": "HTML səhifəsi",
     "artifactSvg": "SVG şəkli",
     "artifactLines": "sətir",
-    "artifactResize": "Önizləmənin ölçüsünü dəyiş"
+    "artifactResize": "Önizləmənin ölçüsünü dəyiş",
+    "webSearchToggle": "Web Search (live internet grounding)",
+    "sourcesTitle": "Sources"
   },
   "playgroundSessions": {
     "heading": "Söhbətlər",

@@ -883,7 +883,9 @@
     "artifactHtml": "HTML-sida",
     "artifactSvg": "SVG-bild",
     "artifactLines": "rader",
-    "artifactResize": "Ändra storlek på förhandsvisning"
+    "artifactResize": "Ändra storlek på förhandsvisning",
+    "webSearchToggle": "Web Search (live internet grounding)",
+    "sourcesTitle": "Sources"
   },
   "playgroundSessions": {
     "heading": "Konversationer",

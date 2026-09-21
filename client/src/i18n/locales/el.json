@@ -883,7 +883,9 @@
     "artifactHtml": "Σελίδα HTML",
     "artifactSvg": "Εικόνα SVG",
     "artifactLines": "γραμμές",
-    "artifactResize": "Αλλαγή μεγέθους προεπισκόπησης"
+    "artifactResize": "Αλλαγή μεγέθους προεπισκόπησης",
+    "webSearchToggle": "Web Search (live internet grounding)",
+    "sourcesTitle": "Sources"
   },
   "playgroundSessions": {
     "heading": "Συνομιλίες",

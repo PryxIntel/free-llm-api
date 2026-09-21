@@ -883,7 +883,9 @@
     "artifactHtml": "HTML പേജ്",
     "artifactSvg": "SVG ചിത്രം",
     "artifactLines": "വരികൾ",
-    "artifactResize": "പ്രിവ്യൂ വലുപ്പം മാറ്റുക"
+    "artifactResize": "പ്രിവ്യൂ വലുപ്പം മാറ്റുക",
+    "webSearchToggle": "Web Search (live internet grounding)",
+    "sourcesTitle": "Sources"
   },
   "playgroundSessions": {
     "heading": "സംഭാഷണങ്ങൾ",

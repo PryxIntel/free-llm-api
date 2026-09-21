@@ -883,7 +883,9 @@
     "artifactHtml": "Halaman HTML",
     "artifactSvg": "Imej SVG",
     "artifactLines": "baris",
-    "artifactResize": "Ubah saiz pratonton"
+    "artifactResize": "Ubah saiz pratonton",
+    "webSearchToggle": "Web Search (live internet grounding)",
+    "sourcesTitle": "Sources"
   },
   "playgroundSessions": {
     "heading": "Perbualan",

@@ -883,7 +883,9 @@
     "artifactHtml": "Ukurasa wa HTML",
     "artifactSvg": "Picha ya SVG",
     "artifactLines": "mistari",
-    "artifactResize": "Badilisha ukubwa wa onyesho"
+    "artifactResize": "Badilisha ukubwa wa onyesho",
+    "webSearchToggle": "Web Search (live internet grounding)",
+    "sourcesTitle": "Sources"
   },
   "playgroundSessions": {
     "heading": "Mazungumzo",

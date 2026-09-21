@@ -883,7 +883,9 @@
     "artifactHtml": "HTML 페이지",
     "artifactSvg": "SVG 이미지",
     "artifactLines": "줄",
-    "artifactResize": "미리보기 크기 조절"
+    "artifactResize": "미리보기 크기 조절",
+    "webSearchToggle": "Web Search (live internet grounding)",
+    "sourcesTitle": "Sources"
   },
   "playgroundSessions": {
     "heading": "대화",

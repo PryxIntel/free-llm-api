@@ -883,7 +883,9 @@
     "artifactHtml": "หน้า HTML",
     "artifactSvg": "ภาพ SVG",
     "artifactLines": "บรรทัด",
-    "artifactResize": "ปรับขนาดตัวอย่าง"
+    "artifactResize": "ปรับขนาดตัวอย่าง",
+    "webSearchToggle": "Web Search (live internet grounding)",
+    "sourcesTitle": "Sources"
   },
   "playgroundSessions": {
     "heading": "บทสนทนา",

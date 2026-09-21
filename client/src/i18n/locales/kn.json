@@ -883,7 +883,9 @@
     "artifactHtml": "HTML ಪುಟ",
     "artifactSvg": "SVG ಚಿತ್ರ",
     "artifactLines": "ಸಾಲುಗಳು",
-    "artifactResize": "ಪೂರ್ವವೀಕ್ಷಣೆಯ ಗಾತ್ರ ಬದಲಿಸಿ"
+    "artifactResize": "ಪೂರ್ವವೀಕ್ಷಣೆಯ ಗಾತ್ರ ಬದಲಿಸಿ",
+    "webSearchToggle": "Web Search (live internet grounding)",
+    "sourcesTitle": "Sources"
   },
   "playgroundSessions": {
     "heading": "ಸಂಭಾಷಣೆಗಳು",

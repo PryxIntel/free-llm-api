@@ -1,6 +1,6 @@
 import { useState, useRef, useEffect, useMemo, useCallback } from 'react'
 import { useQuery, useQueryClient } from '@tanstack/react-query'
-import { ChevronRight, CircleAlert, FileText, X } from 'lucide-react'
+import { ChevronRight, CircleAlert, FileText, X, Globe, ExternalLink } from 'lucide-react'
 import { apiFetch } from '@/lib/api'
 import { buildModelOptions } from '@/lib/model-groups'
 import type { Chain } from '@/components/chain-manager'
@@ -222,6 +222,16 @@ export default function PlaygroundPage() {
   const [selectedModel, setSelectedModel] = useState<string>(
     () => localStorage.getItem('playground.model') ?? 'auto',
   )
+  const [webSearchEnabled, setWebSearchEnabled] = useState<boolean>(() => {
+    try { return localStorage.getItem('playground.webSearch') === 'true' } catch { return false }
+  })
+  const toggleWebSearch = () => {
+    setWebSearchEnabled(prev => {
+      const next = !prev
+      try { localStorage.setItem('playground.webSearch', String(next)) } catch {}
+      return next
+    })
+  }
   // Files staged for the NEXT message: images already downscaled to a data URI,
   // text-like files already decoded. Cleared on send. (#325)
   const [attachments, setAttachments] = useState<Attachment[]>([])
@@ -597,7 +607,12 @@ export default function PlaygroundPage() {
   // Read a fusion SSE stream, updating the assistant message in place as panel
   // answers + the judge arrive (additive `_fusion` frames) and the final answer
   // streams as content deltas.
-  const streamFusion = async (stream: ReadableStream<Uint8Array>, baseMessages: ChatMessage[], start: number) => {
+  const streamFusion = async (
+    stream: ReadableStream<Uint8Array>,
+    baseMessages: ChatMessage[],
+    start: number,
+    searchSources?: Array<{ title: string; url: string; snippet?: string }>,
+  ) => {
     const reader = stream.getReader()
     const dec = new TextDecoder()
     let buf = ''
@@ -611,7 +626,13 @@ export default function PlaygroundPage() {
       const next: ChatMessage[] = [...baseMessages, {
         role: 'assistant',
         content: finalContent,
-        meta: { latency: Date.now() - start, fusionPanel: [...panel], fusionJudge: judge, fusionStreaming: streaming },
+        meta: {
+          latency: Date.now() - start,
+          fusionPanel: [...panel],
+          fusionJudge: judge,
+          fusionStreaming: streaming,
+          searchSources,
+        },
       }]
       setMessages(next)
       return next
@@ -662,6 +683,7 @@ export default function PlaygroundPage() {
     start: number,
     routedVia: string | null,
     fallbackAttempts: string | null,
+    searchSources?: Array<{ title: string; url: string; snippet?: string }>,
   ) => {
     const via = routedVia
       ? { platform: routedVia.split('/')[0], model: routedVia.split('/').slice(1).join('/') }
@@ -687,6 +709,7 @@ export default function PlaygroundPage() {
             model: via?.model,
             latency: Date.now() - start,
             fallbackAttempts: fallbackAttempts ? parseInt(fallbackAttempts) : undefined,
+            searchSources,
           },
         })
       }
@@ -778,11 +801,35 @@ export default function PlaygroundPage() {
     void conversationIdFor(newMessages)
 
     try {
+      let searchSources: Array<{ title: string; url: string; snippet?: string }> | undefined = undefined
+      if (webSearchEnabled && text) {
+        try {
+          const searchData = await apiFetch<{ query: string; results: Array<{ title: string; url: string; snippet: string }> }>(
+            `/api/search?q=${encodeURIComponent(text)}&limit=5`
+          )
+          if (searchData?.results && searchData.results.length > 0) {
+            searchSources = searchData.results
+          }
+        } catch (searchErr) {
+          console.error('[playground] web search query failed:', searchErr)
+        }
+      }
+
       const headers: Record<string, string> = { 'Content-Type': 'application/json' }
       if (keyData?.apiKey) headers['Authorization'] = `Bearer ${keyData.apiKey}`
 
       const isFusion = selectedModel === 'fusion'
-      const sysPrompt = systemPrompt.trim()
+      let sysPrompt = systemPrompt.trim()
+
+      if (searchSources && searchSources.length > 0) {
+        const todayStr = new Date().toISOString().slice(0, 10)
+        const sourcesText = searchSources
+          .map((s, idx) => `[${idx + 1}] "${s.title}" (${s.url})\n${s.snippet}`)
+          .join('\n\n')
+        const groundingText = `[REAL-TIME WEB SEARCH GROUNDING (${todayStr})]:\n${sourcesText}\n\n[GROUNDING DIRECTIVE]: You have access to real-time search results above. Answer the user prompt accurately incorporating these live web results and cite them as [1], [2], etc. where appropriate.`
+        sysPrompt = sysPrompt ? `${sysPrompt}\n\n${groundingText}` : groundingText
+      }
+
       const body: any = {
         messages: [
           ...(sysPrompt ? [{ role: 'system', content: sysPrompt }] : []),
@@ -831,7 +878,7 @@ export default function PlaygroundPage() {
       }
 
       if (isFusion && res.body) {
-        await streamFusion(res.body, newMessages, start)
+        await streamFusion(res.body, newMessages, start, searchSources)
         return
       }
 
@@ -840,7 +887,7 @@ export default function PlaygroundPage() {
       // fall back to the buffered path rather than trusting that: a proxy in
       // front of us, or a future non-streaming route, can still hand back JSON.
       if (!isFusion && res.body && (res.headers.get('Content-Type') ?? '').includes('text/event-stream')) {
-        await streamChat(res.body, newMessages, start, routedVia, fallbackAttempts)
+        await streamChat(res.body, newMessages, start, routedVia, fallbackAttempts, searchSources)
         return
       }
 
@@ -868,6 +915,7 @@ export default function PlaygroundPage() {
           fallbackAttempts: fallbackAttempts ? parseInt(fallbackAttempts) : undefined,
           fusionPanel: fusion?.panel,
           fusionJudge: fusion?.judge,
+          searchSources,
         },
       }]
       setMessages(answered)
@@ -971,12 +1019,34 @@ export default function PlaygroundPage() {
           {/* The chat sits in a centred column; the composer below shares its width. */}
           <div className="mx-auto h-full w-full max-w-3xl space-y-4">
           {messages.length === 0 ? (
-            <div className="flex items-center justify-center h-full text-center">
-              <div className="space-y-2 max-w-sm">
-                <p className="text-base font-medium">{t('playground.emptyTitle')}</p>
+            <div className="flex flex-col items-center justify-center h-full text-center py-8">
+              <div className="space-y-2 max-w-sm mb-6">
+                <p className="text-base font-semibold tracking-tight">{t('playground.emptyTitle')}</p>
                 <p className="text-sm text-muted-foreground">
                   {t('playground.emptyDescription', { model: activeModelLabel })}
                 </p>
+              </div>
+
+              {/* Starter prompts */}
+              <div className="flex flex-wrap justify-center gap-2 max-w-md">
+                {[
+                  { label: '🌐 Search AI news', prompt: 'Search the web for the latest artificial intelligence model releases and breakthroughs', search: true },
+                  { label: '⚡ System Architect', prompt: 'Design a high-throughput, low-latency API gateway architecture in TypeScript', search: false },
+                  { label: '📈 Real-time trends', prompt: 'Search the web for current technology and market trends this week', search: true },
+                ].map((item, idx) => (
+                  <button
+                    key={idx}
+                    type="button"
+                    onClick={() => {
+                      setInput(item.prompt)
+                      if (item.search && !webSearchEnabled) setWebSearchEnabled(true)
+                      inputRef.current?.focus()
+                    }}
+                    className="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-border/80 bg-muted/30 hover:bg-muted text-xs text-muted-foreground hover:text-foreground transition-all duration-150 hover:scale-[1.02]"
+                  >
+                    <span>{item.label}</span>
+                  </button>
+                ))}
               </div>
             </div>
           ) : (
@@ -1028,6 +1098,40 @@ export default function PlaygroundPage() {
                               <ArtifactHostContext.Provider value={artifactHost}>
                                 <Markdown>{msg.content}</Markdown>
                               </ArtifactHostContext.Provider>
+                              {msg.meta?.searchSources && msg.meta.searchSources.length > 0 && (
+                                <div className="mt-3 w-full rounded-xl border border-border/60 bg-muted/20 p-2.5">
+                                  <div className="flex items-center gap-1.5 text-xs font-medium text-muted-foreground mb-2">
+                                    <Globe className="size-3.5 text-primary" />
+                                    <span>{t('playground.sourcesTitle')} ({msg.meta.searchSources.length})</span>
+                                  </div>
+                                  <div className="grid grid-cols-1 sm:grid-cols-2 gap-1.5">
+                                    {msg.meta.searchSources.map((source, idx) => (
+                                      <a
+                                        key={idx}
+                                        href={source.url}
+                                        target="_blank"
+                                        rel="noopener noreferrer"
+                                        className="flex items-start gap-2 p-1.5 rounded-lg border bg-card/60 hover:bg-accent/50 transition-colors text-xs group"
+                                      >
+                                        <span className="flex size-4 shrink-0 items-center justify-center rounded bg-primary/10 text-primary text-[10px] font-mono mt-0.5">
+                                          {idx + 1}
+                                        </span>
+                                        <div className="min-w-0 flex-1">
+                                          <div className="font-medium truncate text-foreground group-hover:text-primary transition-colors text-[11px]">
+                                            {source.title}
+                                          </div>
+                                          <div className="text-[10px] text-muted-foreground truncate opacity-70">
+                                            {(() => {
+                                              try { return new URL(source.url).hostname } catch { return source.url }
+                                            })()}
+                                          </div>
+                                        </div>
+                                        <ExternalLink className="size-3 shrink-0 opacity-40 group-hover:opacity-100 transition-opacity mt-1" />
+                                      </a>
+                                    ))}
+                                  </div>
+                                </div>
+                              )}
                             </>
                           ) : (
                             <div className="whitespace-pre-wrap">{msg.content}</div>
@@ -1184,7 +1288,12 @@ export default function PlaygroundPage() {
             loading={loading}
             onSend={handleSend}
             onAttach={() => fileInputRef.current?.click()}
-            labels={{ attach: t('playground.attach'), send: t('playground.send'), sending: t('playground.sending') }}
+            labels={{
+              attach: t('playground.attach'),
+              send: t('playground.send'),
+              sending: t('playground.sending'),
+              webSearch: t('playground.webSearchToggle'),
+            }}
             dictation={{
               available: transcriptionAvailable,
               model: dictationModel,
@@ -1193,6 +1302,10 @@ export default function PlaygroundPage() {
                 setInput(prev => appendDictation(prev, text))
                 inputRef.current?.focus()
               },
+            }}
+            webSearch={{
+              enabled: webSearchEnabled,
+              onToggle: toggleWebSearch,
             }}
           />
         </div>

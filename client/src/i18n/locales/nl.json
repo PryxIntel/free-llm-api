@@ -883,7 +883,9 @@
     "artifactHtml": "HTML-pagina",
     "artifactSvg": "SVG-afbeelding",
     "artifactLines": "regels",
-    "artifactResize": "Voorbeeld vergroten of verkleinen"
+    "artifactResize": "Voorbeeld vergroten of verkleinen",
+    "webSearchToggle": "Web Search (live internet grounding)",
+    "sourcesTitle": "Sources"
   },
   "playgroundSessions": {
     "heading": "Gesprekken",

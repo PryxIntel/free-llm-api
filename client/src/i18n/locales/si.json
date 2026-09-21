@@ -883,7 +883,9 @@
     "artifactHtml": "HTML පිටුව",
     "artifactSvg": "SVG රූපය",
     "artifactLines": "පේළි",
-    "artifactResize": "පෙරදසුනේ ප්‍රමාණය වෙනස් කරන්න"
+    "artifactResize": "පෙරදසුනේ ප්‍රමාණය වෙනස් කරන්න",
+    "webSearchToggle": "Web Search (live internet grounding)",
+    "sourcesTitle": "Sources"
   },
   "playgroundSessions": {
     "heading": "සංවාද",

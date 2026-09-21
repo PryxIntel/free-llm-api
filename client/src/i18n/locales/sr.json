@@ -883,7 +883,9 @@
     "artifactHtml": "HTML страница",
     "artifactSvg": "SVG слика",
     "artifactLines": "редова",
-    "artifactResize": "Промени величину прегледа"
+    "artifactResize": "Промени величину прегледа",
+    "webSearchToggle": "Web Search (live internet grounding)",
+    "sourcesTitle": "Sources"
   },
   "playgroundSessions": {
     "heading": "Разговори",

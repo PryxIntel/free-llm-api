@@ -883,7 +883,9 @@
     "artifactHtml": "HTML sahifa",
     "artifactSvg": "SVG rasm",
     "artifactLines": "qator",
-    "artifactResize": "Ko‘rish o‘lchamini o‘zgartirish"
+    "artifactResize": "Ko‘rish o‘lchamini o‘zgartirish",
+    "webSearchToggle": "Web Search (live internet grounding)",
+    "sourcesTitle": "Sources"
   },
   "playgroundSessions": {
     "heading": "Suhbatlar",

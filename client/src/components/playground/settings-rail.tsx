@@ -239,11 +239,45 @@ export function SettingsRail({
           {/* The system prompt textarea deliberately lives BELOW the composer in
               DOM order (the rail is the last column): `textarea` first-match
               selectors still land on the message box. */}
-          <div className="space-y-1.5">
-            <label htmlFor="playground-system-prompt" className="flex items-center gap-1.5 text-xs font-medium">
-              {t('playground.systemPromptLabel')}
-              {systemPrompt.trim() && <span className="size-1.5 rounded-full bg-primary/70" />}
-            </label>
+          <div className="space-y-2">
+            <div className="flex items-center justify-between">
+              <label htmlFor="playground-system-prompt" className="flex items-center gap-1.5 text-xs font-medium">
+                {t('playground.systemPromptLabel')}
+                {systemPrompt.trim() && <span className="size-1.5 rounded-full bg-primary/70" />}
+              </label>
+              {systemPrompt.trim() && (
+                <button
+                  type="button"
+                  onClick={() => onSystemPromptChange('')}
+                  className="text-[11px] text-muted-foreground hover:text-foreground transition-colors"
+                >
+                  {t('common.clear')}
+                </button>
+              )}
+            </div>
+            
+            {/* Quick persona presets */}
+            <div className="flex flex-wrap gap-1">
+              {[
+                { label: 'Coder', prompt: 'You are an expert full-stack engineer and architect. Provide clean, secure, and production-grade code with minimal boilerplate.' },
+                { label: 'Researcher', prompt: 'You are an objective research analyst. Provide deep, structured insights and analyze facts critically.' },
+                { label: 'Concise', prompt: 'Answer with maximum brevity and precision. No filler phrases or superfluous text.' },
+              ].map(preset => (
+                <button
+                  key={preset.label}
+                  type="button"
+                  onClick={() => onSystemPromptChange(preset.prompt)}
+                  className={`px-2 py-0.5 rounded-md text-[10px] font-medium border transition-colors ${
+                    systemPrompt === preset.prompt
+                      ? 'bg-primary text-primary-foreground border-primary'
+                      : 'bg-muted/40 hover:bg-muted text-muted-foreground hover:text-foreground border-border/50'
+                  }`}
+                >
+                  {preset.label}
+                </button>
+              ))}
+            </div>
+
             <textarea
               id="playground-system-prompt"
               value={systemPrompt}

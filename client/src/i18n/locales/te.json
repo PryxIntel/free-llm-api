@@ -883,7 +883,9 @@
     "artifactHtml": "HTML పేజీ",
     "artifactSvg": "SVG చిత్రం",
     "artifactLines": "పంక్తులు",
-    "artifactResize": "ప్రివ్యూ పరిమాణం మార్చు"
+    "artifactResize": "ప్రివ్యూ పరిమాణం మార్చు",
+    "webSearchToggle": "Web Search (live internet grounding)",
+    "sourcesTitle": "Sources"
   },
   "playgroundSessions": {
     "heading": "సంభాషణలు",

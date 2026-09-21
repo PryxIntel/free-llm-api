@@ -51,6 +51,8 @@ export interface ChatMessage {
     fusionPanel?: FusionPanelEntry[]
     fusionJudge?: { platform: string; model: string } | null
     fusionStreaming?: boolean
+    // Live Web Search citations and sources
+    searchSources?: Array<{ title: string; url: string; snippet?: string }>
   }
 }
 

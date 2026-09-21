@@ -883,7 +883,9 @@
     "artifactHtml": "HTML-oldal",
     "artifactSvg": "SVG-kép",
     "artifactLines": "sor",
-    "artifactResize": "Előnézet átméretezése"
+    "artifactResize": "Előnézet átméretezése",
+    "webSearchToggle": "Web Search (live internet grounding)",
+    "sourcesTitle": "Sources"
   },
   "playgroundSessions": {
     "heading": "Beszélgetések",

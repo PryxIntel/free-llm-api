@@ -883,7 +883,9 @@
     "artifactHtml": "HTML ପୃଷ୍ଠା",
     "artifactSvg": "SVG ଛବି",
     "artifactLines": "ଧାଡ଼ି",
-    "artifactResize": "ପ୍ରିଭ୍ୟୁ ଆକାର ବଦଳାନ୍ତୁ"
+    "artifactResize": "ପ୍ରିଭ୍ୟୁ ଆକାର ବଦଳାନ୍ତୁ",
+    "webSearchToggle": "Web Search (live internet grounding)",
+    "sourcesTitle": "Sources"
   },
   "playgroundSessions": {
     "heading": "ବାର୍ତ୍ତାଳାପ",

@@ -883,7 +883,9 @@
     "artifactHtml": "HTML पृष्ठ",
     "artifactSvg": "SVG छवि",
     "artifactLines": "पङ्क्तिहरू",
-    "artifactResize": "पूर्वावलोकनको आकार बदल्नुहोस्"
+    "artifactResize": "पूर्वावलोकनको आकार बदल्नुहोस्",
+    "webSearchToggle": "Web Search (live internet grounding)",
+    "sourcesTitle": "Sources"
   },
   "playgroundSessions": {
     "heading": "कुराकानीहरू",

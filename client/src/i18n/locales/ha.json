@@ -883,7 +883,9 @@
     "artifactHtml": "Shafin HTML",
     "artifactSvg": "Hoton SVG",
     "artifactLines": "layuka",
-    "artifactResize": "Canja girman samfoti"
+    "artifactResize": "Canja girman samfoti",
+    "webSearchToggle": "Web Search (live internet grounding)",
+    "sourcesTitle": "Sources"
   },
   "playgroundSessions": {
     "heading": "Tattaunawa",

@@ -883,7 +883,9 @@
     "artifactHtml": "HTML 頁面",
     "artifactSvg": "SVG 圖片",
     "artifactLines": "行",
-    "artifactResize": "調整預覽大小"
+    "artifactResize": "調整預覽大小",
+    "webSearchToggle": "Web Search (live internet grounding)",
+    "sourcesTitle": "Sources"
   },
   "playgroundSessions": {
     "heading": "對話",

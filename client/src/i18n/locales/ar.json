@@ -883,7 +883,9 @@
     "artifactHtml": "صفحة HTML",
     "artifactSvg": "صورة SVG",
     "artifactLines": "أسطر",
-    "artifactResize": "تغيير حجم المعاينة"
+    "artifactResize": "تغيير حجم المعاينة",
+    "webSearchToggle": "Web Search (live internet grounding)",
+    "sourcesTitle": "Sources"
   },
   "playgroundSessions": {
     "heading": "المحادثات",

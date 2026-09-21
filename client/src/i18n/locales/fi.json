@@ -883,7 +883,9 @@
     "artifactHtml": "HTML-sivu",
     "artifactSvg": "SVG-kuva",
     "artifactLines": "riviä",
-    "artifactResize": "Muuta esikatselun kokoa"
+    "artifactResize": "Muuta esikatselun kokoa",
+    "webSearchToggle": "Web Search (live internet grounding)",
+    "sourcesTitle": "Sources"
   },
   "playgroundSessions": {
     "heading": "Keskustelut",

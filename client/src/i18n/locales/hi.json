@@ -883,7 +883,9 @@
     "artifactHtml": "HTML पेज",
     "artifactSvg": "SVG छवि",
     "artifactLines": "पंक्तियाँ",
-    "artifactResize": "पूर्वावलोकन का आकार बदलें"
+    "artifactResize": "पूर्वावलोकन का आकार बदलें",
+    "webSearchToggle": "Web Search (live internet grounding)",
+    "sourcesTitle": "Sources"
   },
   "playgroundSessions": {
     "heading": "बातचीत",

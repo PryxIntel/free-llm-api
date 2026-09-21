@@ -883,7 +883,9 @@
     "artifactHtml": "Ojú-ìwé HTML",
     "artifactSvg": "Àwòrán SVG",
     "artifactLines": "ìlà",
-    "artifactResize": "Yí ìwọ̀n àwòrán àkọ́kọ́ padà"
+    "artifactResize": "Yí ìwọ̀n àwòrán àkọ́kọ́ padà",
+    "webSearchToggle": "Web Search (live internet grounding)",
+    "sourcesTitle": "Sources"
   },
   "playgroundSessions": {
     "heading": "Àwọn ìjíròrò",

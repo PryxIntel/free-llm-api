@@ -883,7 +883,9 @@
     "artifactHtml": "HTML stránka",
     "artifactSvg": "SVG obrázek",
     "artifactLines": "řádků",
-    "artifactResize": "Změnit velikost náhledu"
+    "artifactResize": "Změnit velikost náhledu",
+    "webSearchToggle": "Web Search (live internet grounding)",
+    "sourcesTitle": "Sources"
   },
   "playgroundSessions": {
     "heading": "Konverzace",

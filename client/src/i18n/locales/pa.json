@@ -883,7 +883,9 @@
     "artifactHtml": "HTML ਪੰਨਾ",
     "artifactSvg": "SVG ਤਸਵੀਰ",
     "artifactLines": "ਲਾਈਨਾਂ",
-    "artifactResize": "ਪੂਰਵਦਰਸ਼ਨ ਦਾ ਆਕਾਰ ਬਦਲੋ"
+    "artifactResize": "ਪੂਰਵਦਰਸ਼ਨ ਦਾ ਆਕਾਰ ਬਦਲੋ",
+    "webSearchToggle": "Web Search (live internet grounding)",
+    "sourcesTitle": "Sources"
   },
   "playgroundSessions": {
     "heading": "ਗੱਲਬਾਤ",

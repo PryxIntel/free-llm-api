@@ -883,7 +883,9 @@
     "artifactHtml": "Page HTML",
     "artifactSvg": "Image SVG",
     "artifactLines": "lignes",
-    "artifactResize": "Redimensionner l’aperçu"
+    "artifactResize": "Redimensionner l’aperçu",
+    "webSearchToggle": "Web Search (live internet grounding)",
+    "sourcesTitle": "Sources"
   },
   "playgroundSessions": {
     "heading": "Conversations",

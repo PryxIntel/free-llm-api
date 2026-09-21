@@ -883,7 +883,9 @@
     "artifactHtml": "HTML-страница",
     "artifactSvg": "SVG-изображение",
     "artifactLines": "строк",
-    "artifactResize": "Изменить размер предпросмотра"
+    "artifactResize": "Изменить размер предпросмотра",
+    "webSearchToggle": "Web Search (live internet grounding)",
+    "sourcesTitle": "Sources"
   },
   "playgroundSessions": {
     "heading": "Чаты",

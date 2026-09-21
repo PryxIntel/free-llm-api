@@ -883,7 +883,9 @@
     "artifactHtml": "HTML पृष्ठ",
     "artifactSvg": "SVG प्रतिमा",
     "artifactLines": "ओळी",
-    "artifactResize": "पूर्वावलोकनाचा आकार बदला"
+    "artifactResize": "पूर्वावलोकनाचा आकार बदला",
+    "webSearchToggle": "Web Search (live internet grounding)",
+    "sourcesTitle": "Sources"
   },
   "playgroundSessions": {
     "heading": "संभाषणे",

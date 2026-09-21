@@ -883,7 +883,9 @@
     "artifactHtml": "HTML পেজ",
     "artifactSvg": "SVG ছবি",
     "artifactLines": "লাইন",
-    "artifactResize": "প্রিভিউর আকার বদলান"
+    "artifactResize": "প্রিভিউর আকার বদলান",
+    "webSearchToggle": "Web Search (live internet grounding)",
+    "sourcesTitle": "Sources"
   },
   "playgroundSessions": {
     "heading": "কথোপকথন",

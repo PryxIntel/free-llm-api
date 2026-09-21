@@ -1,6 +1,6 @@
 import { useEffect, useState, type ClipboardEvent, type KeyboardEvent, type RefObject } from 'react'
 import { Liquid } from 'liquid-gooey'
-import { ArrowUp, Paperclip } from 'lucide-react'
+import { ArrowUp, Paperclip, Globe } from 'lucide-react'
 import { Button } from '@/components/ui/button'
 import { DictationButton, type DictationPhase } from './dictation-button'
 import { DictationWave } from './dictation-wave'
@@ -41,13 +41,14 @@ export interface LiquidComposerProps {
   loading: boolean
   onSend: () => void
   onAttach: () => void
-  labels: { attach: string; send: string; sending: string }
+  labels: { attach: string; send: string; sending: string; webSearch?: string }
   /** Speech to text for the mic; the transcript is appended to `value`. */
   dictation: { available: boolean; model: string; apiKey: string | null | undefined; onText: (text: string) => void }
+  webSearch?: { enabled: boolean; onToggle: () => void }
 }
 
 export function LiquidComposer({
-  inputRef, value, onChange, onKeyDown, onPaste, placeholder, hasContent, loading, onSend, onAttach, labels, dictation,
+  inputRef, value, onChange, onKeyDown, onPaste, placeholder, hasContent, loading, onSend, onAttach, labels, dictation, webSearch,
 }: LiquidComposerProps) {
   // Set from input events; an empty value never counts as grown, so a
   // programmatic clear (send, new chat) drops back to one line by itself.
@@ -96,6 +97,23 @@ export function LiquidComposer({
           >
             <Paperclip className="size-4" />
           </Button>
+          {webSearch && (
+            <Button
+              variant="ghost"
+              size="icon"
+              className={`shrink-0 rounded-full transition-all duration-200 ${
+                webSearch.enabled
+                  ? 'bg-primary/15 text-primary border border-primary/30 shadow-xs hover:bg-primary/25'
+                  : 'text-muted-foreground hover:text-foreground'
+              }`}
+              onClick={webSearch.onToggle}
+              disabled={loading}
+              aria-label={labels.webSearch ?? 'Web Search'}
+              title={webSearch.enabled ? 'Web Search: Active (Live Grounding)' : 'Web Search: Off'}
+            >
+              <Globe className={`size-4 ${webSearch.enabled ? 'text-primary' : ''}`} />
+            </Button>
+          )}
           {/* While the mic is open the field shows the voice, not the text:
               the textarea keeps its value and size, the wave paints over it. */}
           {/* A flex wrapper: an inline textarea inside a block div gets a

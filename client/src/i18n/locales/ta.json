@@ -883,7 +883,9 @@
     "artifactHtml": "HTML பக்கம்",
     "artifactSvg": "SVG படம்",
     "artifactLines": "வரிகள்",
-    "artifactResize": "முன்னோட்ட அளவை மாற்று"
+    "artifactResize": "முன்னோட்ட அளவை மாற்று",
+    "webSearchToggle": "Web Search (live internet grounding)",
+    "sourcesTitle": "Sources"
   },
   "playgroundSessions": {
     "heading": "உரையாடல்கள்",

@@ -883,7 +883,9 @@
     "artifactHtml": "Halaman HTML",
     "artifactSvg": "Gambar SVG",
     "artifactLines": "baris",
-    "artifactResize": "Ubah ukuran pratinjau"
+    "artifactResize": "Ubah ukuran pratinjau",
+    "webSearchToggle": "Web Search (live internet grounding)",
+    "sourcesTitle": "Sources"
   },
   "playgroundSessions": {
     "heading": "Percakapan",

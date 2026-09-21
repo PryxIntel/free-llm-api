@@ -883,7 +883,9 @@
     "artifactHtml": "HTML ገጽ",
     "artifactSvg": "SVG ምስል",
     "artifactLines": "መስመሮች",
-    "artifactResize": "የቅድመ እይታ መጠን ቀይር"
+    "artifactResize": "የቅድመ እይታ መጠን ቀይር",
+    "webSearchToggle": "Web Search (live internet grounding)",
+    "sourcesTitle": "Sources"
   },
   "playgroundSessions": {
     "heading": "ውይይቶች",

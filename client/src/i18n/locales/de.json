@@ -883,7 +883,9 @@
     "artifactHtml": "HTML-Seite",
     "artifactSvg": "SVG-Bild",
     "artifactLines": "Zeilen",
-    "artifactResize": "Vorschau in der Größe ändern"
+    "artifactResize": "Vorschau in der Größe ändern",
+    "webSearchToggle": "Web Search (live internet grounding)",
+    "sourcesTitle": "Sources"
   },
   "playgroundSessions": {
     "heading": "Unterhaltungen",

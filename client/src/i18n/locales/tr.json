@@ -883,7 +883,9 @@
     "artifactHtml": "HTML sayfası",
     "artifactSvg": "SVG görseli",
     "artifactLines": "satır",
-    "artifactResize": "Önizlemeyi yeniden boyutlandır"
+    "artifactResize": "Önizlemeyi yeniden boyutlandır",
+    "webSearchToggle": "Web Search (live internet grounding)",
+    "sourcesTitle": "Sources"
   },
   "playgroundSessions": {
     "heading": "Sohbetler",

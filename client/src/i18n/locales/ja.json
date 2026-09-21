@@ -883,7 +883,9 @@
     "artifactHtml": "HTMLページ",
     "artifactSvg": "SVG画像",
     "artifactLines": "行",
-    "artifactResize": "プレビューのサイズ変更"
+    "artifactResize": "プレビューのサイズ変更",
+    "webSearchToggle": "Web Search (live internet grounding)",
+    "sourcesTitle": "Sources"
   },
   "playgroundSessions": {
     "heading": "会話",

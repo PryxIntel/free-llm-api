@@ -883,7 +883,9 @@
     "artifactHtml": "HTML puslapis",
     "artifactSvg": "SVG paveikslėlis",
     "artifactLines": "eilučių",
-    "artifactResize": "Keisti peržiūros dydį"
+    "artifactResize": "Keisti peržiūros dydį",
+    "webSearchToggle": "Web Search (live internet grounding)",
+    "sourcesTitle": "Sources"
   },
   "playgroundSessions": {
     "heading": "Pokalbiai",

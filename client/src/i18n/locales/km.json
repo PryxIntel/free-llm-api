@@ -883,7 +883,9 @@
     "artifactHtml": "ទំព័រ HTML",
     "artifactSvg": "រូបភាព SVG",
     "artifactLines": "បន្ទាត់",
-    "artifactResize": "ប្ដូរទំហំការមើលជាមុន"
+    "artifactResize": "ប្ដូរទំហំការមើលជាមុន",
+    "webSearchToggle": "Web Search (live internet grounding)",
+    "sourcesTitle": "Sources"
   },
   "playgroundSessions": {
     "heading": "ការសន្ទនា",

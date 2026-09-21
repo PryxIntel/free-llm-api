@@ -883,7 +883,9 @@
     "artifactHtml": "HTML صفحہ",
     "artifactSvg": "SVG تصویر",
     "artifactLines": "لائنیں",
-    "artifactResize": "پیش منظر کا سائز بدلیں"
+    "artifactResize": "پیش منظر کا سائز بدلیں",
+    "webSearchToggle": "Web Search (live internet grounding)",
+    "sourcesTitle": "Sources"
   },
   "playgroundSessions": {
     "heading": "گفتگوئیں",

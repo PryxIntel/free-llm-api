@@ -883,7 +883,9 @@
     "artifactHtml": "Trang HTML",
     "artifactSvg": "Ảnh SVG",
     "artifactLines": "dòng",
-    "artifactResize": "Đổi kích cỡ bản xem trước"
+    "artifactResize": "Đổi kích cỡ bản xem trước",
+    "webSearchToggle": "Web Search (live internet grounding)",
+    "sourcesTitle": "Sources"
   },
   "playgroundSessions": {
     "heading": "Cuộc trò chuyện",

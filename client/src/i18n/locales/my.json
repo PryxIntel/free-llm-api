@@ -883,7 +883,9 @@
     "artifactHtml": "HTML စာမျက်နှာ",
     "artifactSvg": "SVG ပုံ",
     "artifactLines": "လိုင်း",
-    "artifactResize": "အစမ်းကြည့်ရှုမှု အရွယ်အစားပြောင်းရန်"
+    "artifactResize": "အစမ်းကြည့်ရှုမှု အရွယ်အစားပြောင်းရန်",
+    "webSearchToggle": "Web Search (live internet grounding)",
+    "sourcesTitle": "Sources"
   },
   "playgroundSessions": {
     "heading": "စကားဝိုင်းများ",

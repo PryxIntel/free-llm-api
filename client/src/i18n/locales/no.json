@@ -883,7 +883,9 @@
     "artifactHtml": "HTML-side",
     "artifactSvg": "SVG-bilde",
     "artifactLines": "linjer",
-    "artifactResize": "Endre størrelse på forhåndsvisning"
+    "artifactResize": "Endre størrelse på forhåndsvisning",
+    "webSearchToggle": "Web Search (live internet grounding)",
+    "sourcesTitle": "Sources"
   },
   "playgroundSessions": {
     "heading": "Samtaler",

@@ -883,7 +883,9 @@
     "artifactHtml": "HTML გვერდი",
     "artifactSvg": "SVG სურათი",
     "artifactLines": "ხაზი",
-    "artifactResize": "გადახედვის ზომის შეცვლა"
+    "artifactResize": "გადახედვის ზომის შეცვლა",
+    "webSearchToggle": "Web Search (live internet grounding)",
+    "sourcesTitle": "Sources"
   },
   "playgroundSessions": {
     "heading": "საუბრები",

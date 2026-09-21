@@ -883,7 +883,9 @@
     "artifactHtml": "HTML-сторінка",
     "artifactSvg": "SVG-зображення",
     "artifactLines": "рядків",
-    "artifactResize": "Змінити розмір перегляду"
+    "artifactResize": "Змінити розмір перегляду",
+    "webSearchToggle": "Web Search (live internet grounding)",
+    "sourcesTitle": "Sources"
   },
   "playgroundSessions": {
     "heading": "Чати",

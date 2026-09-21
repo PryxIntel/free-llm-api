@@ -883,7 +883,9 @@
     "artifactHtml": "HTML page",
     "artifactSvg": "SVG image",
     "artifactLines": "linya",
-    "artifactResize": "Baguhin ang laki ng preview"
+    "artifactResize": "Baguhin ang laki ng preview",
+    "webSearchToggle": "Web Search (live internet grounding)",
+    "sourcesTitle": "Sources"
   },
   "playgroundSessions": {
     "heading": "Mga usapan",

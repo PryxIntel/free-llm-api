@@ -883,7 +883,9 @@
     "artifactHtml": "صفحه HTML",
     "artifactSvg": "تصویر SVG",
     "artifactLines": "خط",
-    "artifactResize": "تغییر اندازه پیش‌نمایش"
+    "artifactResize": "تغییر اندازه پیش‌نمایش",
+    "webSearchToggle": "Web Search (live internet grounding)",
+    "sourcesTitle": "Sources"
   },
   "playgroundSessions": {
     "heading": "گفتگوها",

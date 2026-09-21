@@ -883,7 +883,9 @@
     "artifactHtml": "Ibe HTML",
     "artifactSvg": "Onyonyo SVG",
     "artifactLines": "ahịrị",
-    "artifactResize": "Gbanwee nha nlele"
+    "artifactResize": "Gbanwee nha nlele",
+    "webSearchToggle": "Web Search (live internet grounding)",
+    "sourcesTitle": "Sources"
   },
   "playgroundSessions": {
     "heading": "Mkparịta ụka",

@@ -883,7 +883,9 @@
     "artifactHtml": "עמוד HTML",
     "artifactSvg": "תמונת SVG",
     "artifactLines": "שורות",
-    "artifactResize": "שינוי גודל התצוגה המקדימה"
+    "artifactResize": "שינוי גודל התצוגה המקדימה",
+    "webSearchToggle": "Web Search (live internet grounding)",
+    "sourcesTitle": "Sources"
   },
   "playgroundSessions": {
     "heading": "שיחות",
