@@ -34,10 +34,10 @@ describe('selectPanel vision filtering', () => {
 
   it('drops explicit panel models without vision support when requireVision', async () => {
     const { selectPanel } = await import('../../services/fusion.js');
-    const config = { models: ['gemini-2.5-flash', 'llama-3.1-8b-instant'], k: 2, judge: null, strategy: 'synthesize' as const, expose_panel: false };
+    const config = { models: ['gemini-3.6-flash', 'llama-3.1-8b-instant'], k: 2, judge: null, strategy: 'synthesize' as const, expose_panel: false };
     const { panel, dropped } = selectPanel(config, { requireVision: true, estimatedTokens: 100 });
     expect(panel.every((c) => c.supportsVision === 1)).toBe(true);
-    expect(panel.some((c) => c.modelId === 'gemini-2.5-flash')).toBe(true);
+    expect(panel.some((c) => c.modelId === 'gemini-3.6-flash')).toBe(true);
     expect(panel.some((c) => c.modelId === 'llama-3.1-8b-instant')).toBe(false);
     expect(dropped).toContain('llama-3.1-8b-instant (no vision support)');
   });

@@ -4,8 +4,8 @@
   "version": "0.0.0",
   "type": "module",
   "scripts": {
-    "dev": "node -r ../scripts/polyfill.cjs ./node_modules/vite/bin/vite.js",
-    "build": "node -r ../scripts/polyfill.cjs ./node_modules/typescript/bin/tsc -b && node -r ../scripts/polyfill.cjs ./node_modules/vite/bin/vite.js build",
+    "dev": "vite",
+    "build": "tsc -b && vite build",
     "lint": "eslint .",
     "test": "vitest run && npm run check:i18n",
     "check:i18n": "node scripts/check-i18n.mjs",
@@ -19,7 +19,6 @@
     "@fontsource-variable/geist": "^5.2.8",
     "@fontsource-variable/geist-mono": "^5.2.7",
     "@tailwindcss/postcss": "^4.3.3",
-    "@tailwindcss/vite": "^4.2.2",
     "@tanstack/react-query": "^5.97.0",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",

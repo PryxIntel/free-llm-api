@@ -527,6 +527,20 @@ function toGeminiStopSequences(stop: CompletionOptions['stop']): string[] | unde
   return Array.isArray(stop) ? stop : [stop];
 }
 
+export function normalizeGoogleModelId(modelId: string): string {
+  const normalized = modelId.trim().replace(/^models\//, '');
+  if (normalized === 'gemini-2.5-flash' || normalized === 'gemini-2.0-flash' || normalized === 'gemini-1.5-flash') {
+    return 'gemini-3.6-flash';
+  }
+  if (normalized === 'gemini-2.5-flash-lite' || normalized === 'gemini-2.0-flash-lite' || normalized === 'gemini-1.5-flash-lite') {
+    return 'gemini-3.5-flash-lite';
+  }
+  if (normalized === 'gemini-2.5-pro' || normalized === 'gemini-1.5-pro') {
+    return 'gemini-3.7-flash';
+  }
+  return normalized;
+}
+
 export interface GoogleProviderOptions {
   /** Per-provider HTTP timeout override. Some Gemini models (notably
    *  Gemma reasoning variants) take 20-60s on cold start; the OpenAI-compat
@@ -552,8 +566,9 @@ export class GoogleProvider extends BaseProvider {
     options?: CompletionOptions,
     quotaContext?: QuotaObservationContext,
   ): Promise<ChatCompletionResponse> {
+    const targetModel = normalizeGoogleModelId(modelId);
     const translated = await toGeminiContents(messages);
-    const request = contentsForModel(modelId, translated.contents, translated.systemInstruction);
+    const request = contentsForModel(targetModel, translated.contents, translated.systemInstruction);
 
     const tools = toGeminiTools(options?.tools);
     const body: Record<string, unknown> = {
@@ -572,7 +587,7 @@ export class GoogleProvider extends BaseProvider {
     };
     if (request.systemInstruction) body.systemInstruction = request.systemInstruction;
 
-    const url = `${API_BASE}/models/${modelId}:generateContent`;
+    const url = `${API_BASE}/models/${targetModel}:generateContent`;
     const res = await this.fetchWithTimeout(url, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json', 'x-goog-api-key': apiKey },
@@ -635,8 +650,9 @@ export class GoogleProvider extends BaseProvider {
     options?: CompletionOptions,
     quotaContext?: QuotaObservationContext,
   ): AsyncGenerator<ChatCompletionChunk> {
+    const targetModel = normalizeGoogleModelId(modelId);
     const translated = await toGeminiContents(messages);
-    const request = contentsForModel(modelId, translated.contents, translated.systemInstruction);
+    const request = contentsForModel(targetModel, translated.contents, translated.systemInstruction);
 
     const tools = toGeminiTools(options?.tools);
     const body: Record<string, unknown> = {
@@ -653,7 +669,7 @@ export class GoogleProvider extends BaseProvider {
     };
     if (request.systemInstruction) body.systemInstruction = request.systemInstruction;
 
-    const url = `${API_BASE}/models/${modelId}:streamGenerateContent?alt=sse`;
+    const url = `${API_BASE}/models/${targetModel}:streamGenerateContent?alt=sse`;
     const res = await this.fetchWithTimeout(url, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json', 'x-goog-api-key': apiKey },
