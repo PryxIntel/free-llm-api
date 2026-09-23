@@ -25,18 +25,6 @@
 
 </div>
 
----
-
-## 📌 GitHub Repository Optimization (For Maximum Search Discovery)
-
-> [!TIP]
-> When creating or updating your repository on GitHub, use these exact values in the **About** settings on your repository page to achieve top ranking on GitHub and Google searches:
-> 
-> - **Repository Name:** `free-llm-api`
-> - **Description:** `⚡ Free LLM API Gateway: Aggregate 34+ free-tier AI providers & 600+ models into one unified OpenAI-compatible /v1 endpoint with auto-routing, failover & AES-256 encryption.`
-> - **Website:** `https://github.com/PryxIntel/free-llm-api`
-> - **Topics / Tags (Copy & Paste):**
->   `free-llm-api`, `free-llm`, `llm-gateway`, `openai-proxy`, `ai-gateway`, `free-api`, `gemini-api`, `groq`, `anthropic-proxy`, `claude-code`, `cursor`, `deepseek`, `mistral`, `ai-router`, `reverse-proxy`, `chatgpt-free`, `llm`
 
 ---
 
